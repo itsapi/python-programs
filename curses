@@ -1,0 +1,386 @@
+Help on package curses:
+
+NNAAMMEE
+    curses - curses
+
+FFIILLEE
+    /usr/lib/python2.7/curses/__init__.py
+
+MMOODDUULLEE  DDOOCCSS
+    http://docs.python.org/library/curses
+
+DDEESSCCRRIIPPTTIIOONN
+    The main package for curses support for Python.  Normally used by importing
+    the package, and perhaps a particular module inside it.
+    
+       import curses
+       from curses import textpad
+       curses.initwin()
+       ...
+
+PPAACCKKAAGGEE  CCOONNTTEENNTTSS
+    ascii
+    has_key
+    panel
+    textpad
+    wrapper
+
+FFUUNNCCTTIIOONNSS
+    bbaauuddrraattee(...)
+    
+    bbeeeepp(...)
+    
+    ccaann__cchhaannggee__ccoolloorr(...)
+    
+    ccbbrreeaakk(...)
+    
+    ccoolloorr__ccoonntteenntt(...)
+    
+    ccoolloorr__ppaaiirr(...)
+    
+    ccuurrss__sseett(...)
+    
+    ddeeff__pprroogg__mmooddee(...)
+    
+    ddeeff__sshheellll__mmooddee(...)
+    
+    ddeellaayy__oouuttppuutt(...)
+    
+    ddoouuppddaattee(...)
+    
+    eecchhoo(...)
+    
+    eennddwwiinn(...)
+    
+    eerraasseecchhaarr(...)
+    
+    ffiilltteerr(...)
+    
+    ffllaasshh(...)
+    
+    fflluusshhiinnpp(...)
+    
+    ggeettmmoouussee(...)
+    
+    ggeettssyyxx(...)
+    
+    ggeettwwiinn(...)
+    
+    hhaallffddeellaayy(...)
+    
+    hhaass__ccoolloorrss(...)
+    
+    hhaass__iicc(...)
+    
+    hhaass__iill(...)
+    
+    hhaass__kkeeyy(...)
+    
+    iinniitt__ccoolloorr(...)
+    
+    iinniitt__ppaaiirr(...)
+    
+    iinniittssccrr()
+    
+    iinnttrrfflluusshh(...)
+    
+    iiss__tteerrmm__rreessiizzeedd(...)
+    
+    iisseennddwwiinn(...)
+    
+    kkeeyynnaammee(...)
+    
+    kkiillllcchhaarr(...)
+    
+    lloonnggnnaammee(...)
+    
+    mmeettaa(...)
+    
+    mmoouusseeiinntteerrvvaall(...)
+    
+    mmoouusseemmaasskk(...)
+    
+    nnaappmmss(...)
+    
+    nneewwppaadd(...)
+    
+    nneewwwwiinn(...)
+    
+    nnll(...)
+    
+    nnooccbbrreeaakk(...)
+    
+    nnooeecchhoo(...)
+    
+    nnoonnll(...)
+    
+    nnooqqiifflluusshh(...)
+    
+    nnoorraaww(...)
+    
+    ppaaiirr__ccoonntteenntt(...)
+    
+    ppaaiirr__nnuummbbeerr(...)
+    
+    ppuuttpp(...)
+    
+    qqiifflluusshh(...)
+    
+    rraaww(...)
+    
+    rreesseett__pprroogg__mmooddee(...)
+    
+    rreesseett__sshheellll__mmooddee(...)
+    
+    rreesseettttyy(...)
+    
+    rreessiizzee__tteerrmm(...)
+    
+    rreessiizzeetteerrmm(...)
+    
+    ssaavveettttyy(...)
+    
+    sseettssyyxx(...)
+    
+    sseettuupptteerrmm(...)
+    
+    ssttaarrtt__ccoolloorr()
+    
+    tteerrmmaattttrrss(...)
+    
+    tteerrmmnnaammee(...)
+    
+    ttiiggeettffllaagg(...)
+    
+    ttiiggeettnnuumm(...)
+    
+    ttiiggeettssttrr(...)
+    
+    ttppaarrmm(...)
+    
+    ttyyppeeaahheeaadd(...)
+    
+    uunnccttrrll(...)
+    
+    uunnggeettcchh(...)
+    
+    uunnggeettmmoouussee(...)
+    
+    uussee__ddeeffaauulltt__ccoolloorrss(...)
+    
+    uussee__eennvv(...)
+
+DDAATTAA
+    AALLLL__MMOOUUSSEE__EEVVEENNTTSS = 134217727
+    AA__AALLTTCCHHAARRSSEETT = 4194304
+    AA__AATTTTRRIIBBUUTTEESS = -256
+    AA__BBLLIINNKK = 524288
+    AA__BBOOLLDD = 2097152
+    AA__CCHHAARRTTEEXXTT = 255
+    AA__CCOOLLOORR = 65280
+    AA__DDIIMM = 1048576
+    AA__HHOORRIIZZOONNTTAALL = 33554432
+    AA__IINNVVIISS = 8388608
+    AA__LLEEFFTT = 67108864
+    AA__LLOOWW = 134217728
+    AA__NNOORRMMAALL = 0
+    AA__PPRROOTTEECCTT = 16777216
+    AA__RREEVVEERRSSEE = 262144
+    AA__RRIIGGHHTT = 268435456
+    AA__SSTTAANNDDOOUUTT = 65536
+    AA__TTOOPP = 536870912
+    AA__UUNNDDEERRLLIINNEE = 131072
+    AA__VVEERRTTIICCAALL = 1073741824
+    BBUUTTTTOONN11__CCLLIICCKKEEDD = 4
+    BBUUTTTTOONN11__DDOOUUBBLLEE__CCLLIICCKKEEDD = 8
+    BBUUTTTTOONN11__PPRREESSSSEEDD = 2
+    BBUUTTTTOONN11__RREELLEEAASSEEDD = 1
+    BBUUTTTTOONN11__TTRRIIPPLLEE__CCLLIICCKKEEDD = 16
+    BBUUTTTTOONN22__CCLLIICCKKEEDD = 256
+    BBUUTTTTOONN22__DDOOUUBBLLEE__CCLLIICCKKEEDD = 512
+    BBUUTTTTOONN22__PPRREESSSSEEDD = 128
+    BBUUTTTTOONN22__RREELLEEAASSEEDD = 64
+    BBUUTTTTOONN22__TTRRIIPPLLEE__CCLLIICCKKEEDD = 1024
+    BBUUTTTTOONN33__CCLLIICCKKEEDD = 16384
+    BBUUTTTTOONN33__DDOOUUBBLLEE__CCLLIICCKKEEDD = 32768
+    BBUUTTTTOONN33__PPRREESSSSEEDD = 8192
+    BBUUTTTTOONN33__RREELLEEAASSEEDD = 4096
+    BBUUTTTTOONN33__TTRRIIPPLLEE__CCLLIICCKKEEDD = 65536
+    BBUUTTTTOONN44__CCLLIICCKKEEDD = 1048576
+    BBUUTTTTOONN44__DDOOUUBBLLEE__CCLLIICCKKEEDD = 2097152
+    BBUUTTTTOONN44__PPRREESSSSEEDD = 524288
+    BBUUTTTTOONN44__RREELLEEAASSEEDD = 262144
+    BBUUTTTTOONN44__TTRRIIPPLLEE__CCLLIICCKKEEDD = 4194304
+    BBUUTTTTOONN__AALLTT = 67108864
+    BBUUTTTTOONN__CCTTRRLL = 16777216
+    BBUUTTTTOONN__SSHHIIFFTT = 33554432
+    CCOOLLOORR__BBLLAACCKK = 0
+    CCOOLLOORR__BBLLUUEE = 4
+    CCOOLLOORR__CCYYAANN = 6
+    CCOOLLOORR__GGRREEEENN = 2
+    CCOOLLOORR__MMAAGGEENNTTAA = 5
+    CCOOLLOORR__RREEDD = 1
+    CCOOLLOORR__WWHHIITTEE = 7
+    CCOOLLOORR__YYEELLLLOOWW = 3
+    EERRRR = -1
+    KKEEYY__AA11 = 348
+    KKEEYY__AA33 = 349
+    KKEEYY__BB22 = 350
+    KKEEYY__BBAACCKKSSPPAACCEE = 263
+    KKEEYY__BBEEGG = 354
+    KKEEYY__BBRREEAAKK = 257
+    KKEEYY__BBTTAABB = 353
+    KKEEYY__CC11 = 351
+    KKEEYY__CC33 = 352
+    KKEEYY__CCAANNCCEELL = 355
+    KKEEYY__CCAATTAABB = 342
+    KKEEYY__CCLLEEAARR = 333
+    KKEEYY__CCLLOOSSEE = 356
+    KKEEYY__CCOOMMMMAANNDD = 357
+    KKEEYY__CCOOPPYY = 358
+    KKEEYY__CCRREEAATTEE = 359
+    KKEEYY__CCTTAABB = 341
+    KKEEYY__DDCC = 330
+    KKEEYY__DDLL = 328
+    KKEEYY__DDOOWWNN = 258
+    KKEEYY__EEIICC = 332
+    KKEEYY__EENNDD = 360
+    KKEEYY__EENNTTEERR = 343
+    KKEEYY__EEOOLL = 335
+    KKEEYY__EEOOSS = 334
+    KKEEYY__EEXXIITT = 361
+    KKEEYY__FF00 = 264
+    KKEEYY__FF11 = 265
+    KKEEYY__FF1100 = 274
+    KKEEYY__FF1111 = 275
+    KKEEYY__FF1122 = 276
+    KKEEYY__FF1133 = 277
+    KKEEYY__FF1144 = 278
+    KKEEYY__FF1155 = 279
+    KKEEYY__FF1166 = 280
+    KKEEYY__FF1177 = 281
+    KKEEYY__FF1188 = 282
+    KKEEYY__FF1199 = 283
+    KKEEYY__FF22 = 266
+    KKEEYY__FF2200 = 284
+    KKEEYY__FF2211 = 285
+    KKEEYY__FF2222 = 286
+    KKEEYY__FF2233 = 287
+    KKEEYY__FF2244 = 288
+    KKEEYY__FF2255 = 289
+    KKEEYY__FF2266 = 290
+    KKEEYY__FF2277 = 291
+    KKEEYY__FF2288 = 292
+    KKEEYY__FF2299 = 293
+    KKEEYY__FF33 = 267
+    KKEEYY__FF3300 = 294
+    KKEEYY__FF3311 = 295
+    KKEEYY__FF3322 = 296
+    KKEEYY__FF3333 = 297
+    KKEEYY__FF3344 = 298
+    KKEEYY__FF3355 = 299
+    KKEEYY__FF3366 = 300
+    KKEEYY__FF3377 = 301
+    KKEEYY__FF3388 = 302
+    KKEEYY__FF3399 = 303
+    KKEEYY__FF44 = 268
+    KKEEYY__FF4400 = 304
+    KKEEYY__FF4411 = 305
+    KKEEYY__FF4422 = 306
+    KKEEYY__FF4433 = 307
+    KKEEYY__FF4444 = 308
+    KKEEYY__FF4455 = 309
+    KKEEYY__FF4466 = 310
+    KKEEYY__FF4477 = 311
+    KKEEYY__FF4488 = 312
+    KKEEYY__FF4499 = 313
+    KKEEYY__FF55 = 269
+    KKEEYY__FF5500 = 314
+    KKEEYY__FF5511 = 315
+    KKEEYY__FF5522 = 316
+    KKEEYY__FF5533 = 317
+    KKEEYY__FF5544 = 318
+    KKEEYY__FF5555 = 319
+    KKEEYY__FF5566 = 320
+    KKEEYY__FF5577 = 321
+    KKEEYY__FF5588 = 322
+    KKEEYY__FF5599 = 323
+    KKEEYY__FF66 = 270
+    KKEEYY__FF6600 = 324
+    KKEEYY__FF6611 = 325
+    KKEEYY__FF6622 = 326
+    KKEEYY__FF6633 = 327
+    KKEEYY__FF77 = 271
+    KKEEYY__FF88 = 272
+    KKEEYY__FF99 = 273
+    KKEEYY__FFIINNDD = 362
+    KKEEYY__HHEELLPP = 363
+    KKEEYY__HHOOMMEE = 262
+    KKEEYY__IICC = 331
+    KKEEYY__IILL = 329
+    KKEEYY__LLEEFFTT = 260
+    KKEEYY__LLLL = 347
+    KKEEYY__MMAARRKK = 364
+    KKEEYY__MMAAXX = 511
+    KKEEYY__MMEESSSSAAGGEE = 365
+    KKEEYY__MMIINN = 257
+    KKEEYY__MMOOUUSSEE = 409
+    KKEEYY__MMOOVVEE = 366
+    KKEEYY__NNEEXXTT = 367
+    KKEEYY__NNPPAAGGEE = 338
+    KKEEYY__OOPPEENN = 368
+    KKEEYY__OOPPTTIIOONNSS = 369
+    KKEEYY__PPPPAAGGEE = 339
+    KKEEYY__PPRREEVVIIOOUUSS = 370
+    KKEEYY__PPRRIINNTT = 346
+    KKEEYY__RREEDDOO = 371
+    KKEEYY__RREEFFEERREENNCCEE = 372
+    KKEEYY__RREEFFRREESSHH = 373
+    KKEEYY__RREEPPLLAACCEE = 374
+    KKEEYY__RREESSEETT = 345
+    KKEEYY__RREESSIIZZEE = 410
+    KKEEYY__RREESSTTAARRTT = 375
+    KKEEYY__RREESSUUMMEE = 376
+    KKEEYY__RRIIGGHHTT = 261
+    KKEEYY__SSAAVVEE = 377
+    KKEEYY__SSBBEEGG = 378
+    KKEEYY__SSCCAANNCCEELL = 379
+    KKEEYY__SSCCOOMMMMAANNDD = 380
+    KKEEYY__SSCCOOPPYY = 381
+    KKEEYY__SSCCRREEAATTEE = 382
+    KKEEYY__SSDDCC = 383
+    KKEEYY__SSDDLL = 384
+    KKEEYY__SSEELLEECCTT = 385
+    KKEEYY__SSEENNDD = 386
+    KKEEYY__SSEEOOLL = 387
+    KKEEYY__SSEEXXIITT = 388
+    KKEEYY__SSFF = 336
+    KKEEYY__SSFFIINNDD = 389
+    KKEEYY__SSHHEELLPP = 390
+    KKEEYY__SSHHOOMMEE = 391
+    KKEEYY__SSIICC = 392
+    KKEEYY__SSLLEEFFTT = 393
+    KKEEYY__SSMMEESSSSAAGGEE = 394
+    KKEEYY__SSMMOOVVEE = 395
+    KKEEYY__SSNNEEXXTT = 396
+    KKEEYY__SSOOPPTTIIOONNSS = 397
+    KKEEYY__SSPPRREEVVIIOOUUSS = 398
+    KKEEYY__SSPPRRIINNTT = 399
+    KKEEYY__SSRR = 337
+    KKEEYY__SSRREEDDOO = 400
+    KKEEYY__SSRREEPPLLAACCEE = 401
+    KKEEYY__SSRREESSEETT = 344
+    KKEEYY__SSRRIIGGHHTT = 402
+    KKEEYY__SSRRSSUUMMEE = 403
+    KKEEYY__SSSSAAVVEE = 404
+    KKEEYY__SSSSUUSSPPEENNDD = 405
+    KKEEYY__SSTTAABB = 340
+    KKEEYY__SSUUNNDDOO = 406
+    KKEEYY__SSUUSSPPEENNDD = 407
+    KKEEYY__UUNNDDOO = 408
+    KKEEYY__UUPP = 259
+    OOKK = 0
+    RREEPPOORRTT__MMOOUUSSEE__PPOOSSIITTIIOONN = 134217728
+    ____rreevviissiioonn____ = '$Id$'
+    vveerrssiioonn = '2.2'
+
