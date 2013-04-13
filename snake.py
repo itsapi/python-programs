@@ -1,3 +1,5 @@
+#WELCOME TO SNAKE
+
 import curses
 import sys
 import console
