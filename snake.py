@@ -8,6 +8,8 @@ import pickle
 import letters
 import colorsText
 
+TICK = .5
+
 def init():
         return Score(), Snake()
 
@@ -68,9 +70,9 @@ def printHighScores(n=10, newScore=(0,0)):
 		for i, score in enumerate(scores):
 			if newScore[0] == score[0] and newScore[1] == score[1]:
 				color = colorsText.GREEN
+				print int((console.WIDTH-30)/2)*' ' + colorsText.printout(str(i+1) + '. ' + score[0][:27-len(str(score[1]))] + (27-len(score[0]))*' ' + str(score[1]), color)
 			else:
-				color = colorsText.WHITE
-			print int((console.WIDTH-30)/2)*' ' + colorsText.printout(str(i+1) + '. ' + score[0][:27-len(str(score[1]))] + (27-len(score[0]))*' ' + str(score[1]), color)
+				print int((console.WIDTH-30)/2)*' ' + str(i+1) + '. ' + score[0][:27-len(str(score[1]))] + (27-len(score[0]))*' ' + str(score[1])
 		print int((console.HEIGHT-len(scores))/2)*'\n'
 
 def menuScreen():
@@ -138,7 +140,7 @@ def menu(stdscr):
 				pos = 3
 		elif not c == ord('\n'):
 			curses.flash()
-		time.sleep(.1)
+		time.sleep(TICK)
 
 	if pos == 3:
 		print int(console.HEIGHT)*'\n'
@@ -195,7 +197,7 @@ def main(stdscr, score, snake):
 
 				time.sleep(.1)
 
-		time.sleep(.1)
+		time.sleep(TICK)
 
 class Score(object):
 	def __init__(self):
