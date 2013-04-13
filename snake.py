@@ -69,6 +69,7 @@ def printHighScores(n=10, newScore=(0,0)):
 		scores.reverse()
 		scores = scores[:n]
 		print int((console.HEIGHT-len(scores))/2)*'\n'
+		print int((console.WIDTH-10)/2)*' ' + 'HIGHSCORES' + '\n'
 		for i, score in enumerate(scores):
 			if newScore[0] == score[0] and newScore[1] == score[1]:
 				color = colorsText.GREEN
