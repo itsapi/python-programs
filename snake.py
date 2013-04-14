@@ -10,7 +10,7 @@ import pickle
 import letters
 import colorsText
 
-TICK = .5
+TICK = .1
 
 def init():
         return Score(), Snake()
