@@ -5,8 +5,17 @@ import letters
 import os
 
 while True:
+
+	str = []
+
+	try:
+		if not sys.argv[1] == '':
+			str = sys.argv[1:]
+	except:
+		str = os.popen('fortune').readlines()
+
 	dirtyText = ''
-	for line in  os.popen('fortune').readlines():
+	for line in str:
 		dirtyText += line + ' '
 
 	text = ''

@@ -1,5 +1,7 @@
 #coding=utf-8
 
+import sys
+
 ALPHABET = {
 	'1' : ('   ##    ',
 		   '  # #    ',
@@ -441,4 +443,8 @@ def word(word):
 	return out
 
 if __name__ == '__main__':
-	print word('Snake!')
+	try:
+		str = sys.argv[1]
+	except:
+		str = 'Snake!'
+	print word(str)
