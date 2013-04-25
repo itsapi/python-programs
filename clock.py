@@ -9,9 +9,9 @@ class Clock(object):
     def __init__(self, time, size):
         self.time = int(time)
         self.size = size
-        self.seconds = Hand(1, self.time, colorsText.WHITE)
-        self.minutes = Hand(60, self.time, colorsText.WHITE)
-        self.hours = Hand(720, self.time, colorsText.WHITE)
+        self.seconds = Hand(1, self.time)
+        self.minutes = Hand(60, self.time)
+        self.hours = Hand(720, self.time)
 
     def update(self, time):
         self.time = int(time)
@@ -20,29 +20,28 @@ class Clock(object):
         self.hours.set(self.time)
 
     def digital(self):
-        return self.hours.digital(self.time) + ':' + self.minutes.digital(self.time) + ':' + self.seconds.digital(self.time)
+        return '%02d' % int(self.hours.digital(self.time)) + ':' + '%02d' % int(self.minutes.digital(self.time)) + ':' + '%02d' % int(self.seconds.digital(self.time))
 
     def analogue(self, data):
         screen = Screen(self.size, self.size, self)
-        screen.vector((int(self.size/2), int(self.size/2)), self.seconds.calcAng(), self.size*.4, self.seconds.color)
-        screen.vector((int(self.size/2), int(self.size/2)), self.minutes.calcAng(), self.size*.35, self.minutes.color)
-        screen.vector((int(self.size/2), int(self.size/2)), self.hours.calcAng(), self.size*.3, self.hours.color)
-        screen.display[self.size/2][self.size/2] = colorsText.printout('O', colorsText.WHITE)
-	screen.border()
+        screen.vector((int(self.size/2), int(self.size/2)), self.seconds.calcAng(), self.size*.4)
+        screen.vector((int(self.size/2), int(self.size/2)), self.minutes.calcAng(), self.size*.35)
+        screen.vector((int(self.size/2), int(self.size/2)), self.hours.calcAng(), self.size*.3)
+        screen.display[self.size/2][self.size/2] = 'O'
+        screen.border()
         return screen.update(data)
         
 class Hand(object):
-    def __init__(self, interval, time, color):
-	self.color = color
+    def __init__(self, interval, time):
         self.interval = interval
         self.pos = ((time / self.interval) % 60)
 
     def digital(self, time):
         temp = '{:2d}'
         if self.interval == 720:
-            return colorsText.printout(temp.format(((time / 3600) % 60) % 24), self.color)
+            return temp.format(((time / 3600) % 60) % 24)
         else:
-            return colorsText.printout(temp.format((time / self.interval) % 60), self.color)
+            return temp.format((time / self.interval) % 60)
 
     def set(self, time):
         if time % self.interval == 0:
@@ -51,7 +50,7 @@ class Hand(object):
     def calcAng(self):
         if self.interval == 720:
 	        return (self.pos+6)*6
-	else:
+        else:
 	        return self.pos*6
 
 class Screen(object):
@@ -60,26 +59,26 @@ class Screen(object):
         self.size = y
         self.display = [[' ' for j in range(x)] for i in range(y)]
 
-    def vector(self, start, angle, length, color):
+    def vector(self, start, angle, length):
         xLength = length * math.sin(math.radians(angle))
         yLength = length * math.cos(math.radians(angle))
         if (angle-45) % 180 < 90:
             if xLength <= 0:
                 for xOff in range(0, int(xLength), -1):
-                    self.display[int(start[1] + ((xLength-xOff)/math.tan(math.radians(angle))))][int(start[0]+xLength-xOff)] = colorsText.printout('#', color)
+                    self.display[int(start[1] + ((xLength-xOff)/math.tan(math.radians(angle))))][int(start[0]+xLength-xOff)] = '#'
             else:
                 for xOff in range(int(xLength)):
-                    self.display[int(start[1] + ((xLength-xOff)/math.tan(math.radians(angle))))][int(start[0]+xLength-xOff)] = colorsText.printout('#', color)
+                    self.display[int(start[1] + ((xLength-xOff)/math.tan(math.radians(angle))))][int(start[0]+xLength-xOff)] = '#'
         else:
             if yLength <= 0:
                 for yOff in range(0, int(yLength), -1):
-                    self.display[int(start[1]+yLength-yOff)][int(start[0] + ((yLength-yOff)*math.tan(math.radians(angle))))] = colorsText.printout('#', color)
+                    self.display[int(start[1]+yLength-yOff)][int(start[0] + ((yLength-yOff)*math.tan(math.radians(angle))))] = '#'
             else:
                 for yOff in range(int(yLength)):
-                    self.display[int(start[1]+yLength-yOff)][int(start[0] + ((yLength-yOff)*math.tan(math.radians(angle))))] = colorsText.printout('#', color)
+                    self.display[int(start[1]+yLength-yOff)][int(start[0] + ((yLength-yOff)*math.tan(math.radians(angle))))] = '#'
 
     def border(self):
-	self.display = circle.circle(self.display, (self.size/2,self.size/2), (self.size/2)-1, colorsText.WHITE)
+	   self.display = circle.circle(self.display, (self.size/2,self.size/2), (self.size/2)-1)
 
     def update(self, data):
         y = len(self.display)
@@ -101,7 +100,7 @@ class Screen(object):
                 result += pixel + ' '
             result += '\n'
         result += '\n' * ((console.HEIGHT - self.size)/2)
-       # result += '\n' + (' '*((console.WIDTH - 8)/2) + self.clock.digital() + '\n' + data
+        result += '\n' + ' '*((console.WIDTH - 8)/2) + self.clock.digital() + '\n'
         return result
 
 class Fps(object):
@@ -128,7 +127,7 @@ while True:
     try:
         time.sleep(.9)
         clock.update(time.time())
-        sys.stdout.write(clock.analogue(''))#str(fps)) + '\n')
+        sys.stdout.write(clock.analogue(''))
     except KeyboardInterrupt:
         print '\n' * console.HEIGHT
         sys.exit()
