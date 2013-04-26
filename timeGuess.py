@@ -5,11 +5,11 @@ class Game(object):
         pass
     def start(self, length):
         old_time = time.time()
-        input('Is time up yet?')
+        eval(input('Is time up yet?'))
         diff = time.time() - old_time
         if round(diff, 1) == length:
             print('Bang on!')
         else:
-            print('You were ' + str(round(abs(length - diff), 1)) + ' seconds out.')
+            print(('You were ' + str(round(abs(length - diff), 1)) + ' seconds out.'))
 
 g = Game()

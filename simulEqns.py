@@ -6,8 +6,8 @@ class Equation(object):
 		valid = False
 		while not valid:
 			valid = True
-			self.m = input('Enter the value for m: ')
-			self.c = input('Enter the value for c: ')
+			self.m = eval(input('Enter the value for m: '))
+			self.c = eval(input('Enter the value for c: '))
 			try:
 				self.m = int(self.m)
 				self.c = int(self.c)
@@ -23,14 +23,14 @@ def solve(eq1, eq2):
 	else:
 		x = (-c)/m
 	y = (eq1.m*x) + eq1.c
-	print('\nX = '+str(x)+', Y = '+str(y)+'\n')
+	print(('\nX = '+str(x)+', Y = '+str(y)+'\n'))
 
 while True:
 	print('Equation 1:')
 	eq1 = Equation()
-	print('y='+str(eq1.m)+'x+'+str(eq1.c))
+	print(('y='+str(eq1.m)+'x+'+str(eq1.c)))
 	print('\nEquation 2:')
 	eq2 = Equation()
-	print('y='+str(eq2.m)+'x+'+str(eq2.c))
+	print(('y='+str(eq2.m)+'x+'+str(eq2.c)))
 	print('\nSolving:')
-	print(solve(eq1, eq2))
+	print((solve(eq1, eq2)))

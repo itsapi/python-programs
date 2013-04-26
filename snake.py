@@ -53,7 +53,7 @@ def printHighScores(n=10, newScore=(0,0)):
 	except:
 		scores = False
 	if scores == False:
-		print int(console.HEIGHT/2)*'\n' + int((console.WIDTH-24)/2)*' ' + 'No high scores in memory' + int(console.HEIGHT/2)*'\n'
+		print(int(console.HEIGHT/2)*'\n' + int((console.WIDTH-24)/2)*' ' + 'No high scores in memory' + int(console.HEIGHT/2)*'\n')
 	else:
 		for iteration in range(len(scores)-1):
 			swap = False
@@ -68,15 +68,15 @@ def printHighScores(n=10, newScore=(0,0)):
 
 		scores.reverse()
 		scores = scores[:n]
-		print int((console.HEIGHT-len(scores))/2)*'\n'
-		print int((console.WIDTH-10)/2)*' ' + 'HIGHSCORES' + '\n'
+		print(int((console.HEIGHT-len(scores))/2)*'\n')
+		print(int((console.WIDTH-10)/2)*' ' + 'HIGHSCORES' + '\n')
 		for i, score in enumerate(scores):
 			if newScore[0] == score[0] and newScore[1] == score[1]:
 				color = colorsText.GREEN
-				print int((console.WIDTH-30)/2)*' ' + colorsText.printout(str(i+1) + '. ' + score[0][:27-len(str(score[1]))] + (27-len(score[0]))*' ' + str(score[1]), color)
+				print(int((console.WIDTH-30)/2)*' ' + colorsText.printout(str(i+1) + '. ' + score[0][:27-len(str(score[1]))] + (27-len(score[0]))*' ' + str(score[1]), color))
 			else:
-				print int((console.WIDTH-30)/2)*' ' + str(i+1) + '. ' + score[0][:27-len(str(score[1]))] + (27-len(score[0]))*' ' + str(score[1])
-		print int((console.HEIGHT-len(scores))/2)*'\n'
+				print(int((console.WIDTH-30)/2)*' ' + str(i+1) + '. ' + score[0][:27-len(str(score[1]))] + (27-len(score[0]))*' ' + str(score[1]))
+		print(int((console.HEIGHT-len(scores))/2)*'\n')
 
 def menuScreen():
 	goto = None
@@ -84,7 +84,7 @@ def menuScreen():
 		goto = curses.wrapper(menu)
 		if goto == 'High Scores':
 			printHighScores()
-			raw_input('Press enter to continue')
+			input('Press enter to continue')
 
 def menu(stdscr):
 	curses.start_color()
@@ -146,7 +146,7 @@ def menu(stdscr):
 		time.sleep(TICK)
 
 	if pos == 3:
-		print int(console.HEIGHT)*'\n'
+		print(int(console.HEIGHT)*'\n')
 		sys.exit()
 	else:
 		return menuItems[pos-1]
@@ -318,7 +318,7 @@ menuScreen()
 score, snake = init()
 
 while not snake == False:
-	print console.HEIGHT*'\n'
+	print(console.HEIGHT*'\n')
 	try:
 		curses.wrapper(main, score, snake)
 	except:
@@ -326,24 +326,24 @@ while not snake == False:
 			time.sleep(.5)
 			snake = die(snake, score)
 			if snake == False:
-				print int(console.HEIGHT/2)*'\n' + int((console.WIDTH-35)/2)*' ' + 'Game Over! You lost all your lives!\n'
-				raw_input(int(console.HEIGHT/2)*'\n' + int((console.WIDTH-23)/2)*' ' + 'Press enter to continue' + int(console.HEIGHT/2)*'\n')
-				response = raw_input(int(console.HEIGHT/2)*'\n' + int((console.WIDTH-40)/2)*' ' + 'Do you want to save your score? (YES/no)' + int(console.HEIGHT/2)*'\n')
+				print(int(console.HEIGHT/2)*'\n' + int((console.WIDTH-35)/2)*' ' + 'Game Over! You lost all your lives!\n')
+				input(int(console.HEIGHT/2)*'\n' + int((console.WIDTH-23)/2)*' ' + 'Press enter to continue' + int(console.HEIGHT/2)*'\n')
+				response = input(int(console.HEIGHT/2)*'\n' + int((console.WIDTH-40)/2)*' ' + 'Do you want to save your score? (YES/no)' + int(console.HEIGHT/2)*'\n')
 				if not (response == 'no' or response == 'NO' or response == 'n' or response == 'N'):
 					valid = False
 					while not valid:
-						name = raw_input(int(console.HEIGHT/2)*'\n' + int((console.WIDTH-16)/2)*' ' + 'Enter your name:' + int(console.HEIGHT/2)*'\n')
+						name = input(int(console.HEIGHT/2)*'\n' + int((console.WIDTH-16)/2)*' ' + 'Enter your name:' + int(console.HEIGHT/2)*'\n')
 						if not name == '':
 							valid = True
 					highScores(score.get_score, name)
 					printHighScores(newScore=(name,score.get_score))
-					raw_input('Press enter to continue')
-				response = raw_input(int(console.HEIGHT/2)*'\n' + int((console.WIDTH-32)/2)*' ' + 'Do you want to restart? (YES/no)' + int(console.HEIGHT/2)*'\n')
+					input('Press enter to continue')
+				response = input(int(console.HEIGHT/2)*'\n' + int((console.WIDTH-32)/2)*' ' + 'Do you want to restart? (YES/no)' + int(console.HEIGHT/2)*'\n')
 				if not (response == 'no' or response == 'NO' or response == 'n' or response == 'N'):
 					score, snake = init()
 				else:
 					menuScreen()
 					score, snake = init()
 		except KeyboardInterrupt:
-			print console.HEIGHT*'\n'
+			print(console.HEIGHT*'\n')
 			sys.exit()

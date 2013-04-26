@@ -17,65 +17,65 @@ class Game(object):
                        'tyres' : 200,
                        'body' : 400}
         
-        print '\n'*console.HEIGHT
-        print self.car(' ')
+        print('\n'*console.HEIGHT)
+        print(self.car(' '))
 
     def menu(self, menuType):
         game.displayMoney()
         if menuType == 'main':
-            print '1. Upgrade'
-            print '2. Race'
-            print '3. Exit'
+            print('1. Upgrade')
+            print('2. Race')
+            print('3. Exit')
             valid = False
             while not valid:
-                choice = str(raw_input('Choose an option: '))
+                choice = str(input('Choose an option: '))
                 if choice == '1':
-                    print '\n'*console.HEIGHT
+                    print('\n'*console.HEIGHT)
                     self.menu('upgrade')
                     valid = True
                 elif choice == '2':
-                    print '\n'*console.HEIGHT
+                    print('\n'*console.HEIGHT)
                     self.race()
                     valid = True
                 elif choice == '3':
-                    print '\n'*console.HEIGHT
+                    print('\n'*console.HEIGHT)
                     self.running = False
                     valid = True
         elif menuType == 'upgrade':
-            print '1. Engine - Level ' + str(self.parts['engine']+1) + ' - £' + str(self.prices['engine'])
-            print '2. Tyres - Level ' + str(self.parts['tyres']+1) + ' - £' + str(self.prices['tyres'])
-            print '3. Body - Level ' + str(self.parts['body']+1) + ' - £' + str(self.prices['body'])
-            print '4. Go Back'
+            print('1. Engine - Level ' + str(self.parts['engine']+1) + ' - £' + str(self.prices['engine']))
+            print('2. Tyres - Level ' + str(self.parts['tyres']+1) + ' - £' + str(self.prices['tyres']))
+            print('3. Body - Level ' + str(self.parts['body']+1) + ' - £' + str(self.prices['body']))
+            print('4. Go Back')
             valid = False
             while not valid:
-                choice = str(raw_input('Choose an option: '))
+                choice = str(input('Choose an option: '))
                 if choice == '1':
-                    print '\n'*console.HEIGHT
+                    print('\n'*console.HEIGHT)
                     self.upgrade('engine')
                     valid = True
                 elif choice == '2':
-                    print '\n'*console.HEIGHT
+                    print('\n'*console.HEIGHT)
                     self.upgrade('tyres')
                     valid = True
                 elif choice == '3':
-                    print '\n'*console.HEIGHT
+                    print('\n'*console.HEIGHT)
                     self.upgrade('body')
                     valid = True
                 elif choice == '4':
-                    print '\n'*console.HEIGHT
+                    print('\n'*console.HEIGHT)
                     valid = True
 
     def upgrade(self, part):
         if self.pay(self.prices[part]):
             self.parts[part] += 1
-            print 'You bought the ' + part + ' upgrade for £' + str(self.prices[part]) + '.'
-            print 'Your ' + part + ' is now upgraded to level ' + str(self.parts[part])
+            print('You bought the ' + part + ' upgrade for £' + str(self.prices[part]) + '.')
+            print('Your ' + part + ' is now upgraded to level ' + str(self.parts[part]))
             self.prices[part] += self.prices[part] / 10
         else:
-            print 'You cannot afford this upgrade'
+            print('You cannot afford this upgrade')
 
     def displayMoney(self):
-        print 'You have £' + str(self.money)
+        print('You have £' + str(self.money))
 
     def pay(self, amount):
         if self.money >= amount:
@@ -104,33 +104,33 @@ class Game(object):
         population += population2
         entryCost = prizeMoney*random.choice(population)/100
 
-        print 'The entry cost for this race is £' + str(entryCost)
-        print 'The prize for this race is £' + str(prizeMoney)
+        print('The entry cost for this race is £' + str(entryCost))
+        print('The prize for this race is £' + str(prizeMoney))
 
-        cont = raw_input('Do you want to enter this race? (Y/n) ')
+        cont = input('Do you want to enter this race? (Y/n) ')
         if cont == 'Y' or cont == 'y' or cont == '':
             # Taking Entry Cost
             if not self.pay(entryCost):
-                print '\n'*console.HEIGHT
-                print 'You cannot afford the entry cost.'
+                print('\n'*console.HEIGHT)
+                print('You cannot afford the entry cost.')
             else:
                 self.draw(playerLevel, opponentLevel)
-                print '\n'*console.HEIGHT
+                print('\n'*console.HEIGHT)
                 if opponentLevel > playerLevel:
                     # Opponent Wins
-                    print 'You Lost!!'
+                    print('You Lost!!')
                 elif opponentLevel == playerLevel:
                     # Tie
-                    print 'Tie!!'
-                    print 'You got your £' + str(entryCost) + ' entry cost back'
+                    print('Tie!!')
+                    print('You got your £' + str(entryCost) + ' entry cost back')
                     self.money += entryCost
                 else:
                     # Player Wins
-                    print 'You Won £' + str(prizeMoney) + '!!'
+                    print('You Won £' + str(prizeMoney) + '!!')
                     self.money += prizeMoney
         else:
-            print '\n'*console.HEIGHT
-            print 'You quit the race.'
+            print('\n'*console.HEIGHT)
+            print('You quit the race.')
 
     def car(self, num, dist=0):
         if dist == 0 or 100-dist <= 8:
@@ -162,7 +162,7 @@ class Game(object):
             display += (console.HEIGHT/2-5)*(100*' ' + '|' + '\n')
             if n*speed[winnerCar] >= 100:
                 winner = True
-            print display
+            print(display)
             n += 1
             time.sleep(0.1)
 

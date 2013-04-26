@@ -5,7 +5,7 @@ import time
 import console
 import sys
 
-BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = range(8)
+BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = list(range(8))
 
 def colorText(text, color):
 	return '\x1b[1;%dm' % (30+color) + str(text) + '\x1b[0m'
@@ -47,7 +47,7 @@ class Screen(object):
 		self.screen = [[color for i in range(x)] for j in range(y)]
 
 	def putPixel(self, x, y, color, text='#'):
-		self.screen[y][x] = colorText(text[:1], color)
+		self.screen[int(y)][int(x)] = colorText(text[:1], color)
 
 	def putVector(self, x, y, angle, length, color):
 		xLength = length * math.sin(math.radians(angle))

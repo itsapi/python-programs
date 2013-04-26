@@ -448,4 +448,4 @@ if __name__ == '__main__':
 		str = ' '.join(sys.argv[1:])
 	except:
 		str = 'Snake!'
-	print word(str)
+	print(word(str))

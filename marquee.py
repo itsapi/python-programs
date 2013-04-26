@@ -35,9 +35,9 @@ while True:
 
 	i = 0
 	for i in range(len(lines[0])):
-		print '\n'*(console.HEIGHT/2-2)
+		print('\n'*int(console.HEIGHT/2-2))
 		for line in lines:
-			print (line[i % len(line):] + line[:i % len(line)])[:console.WIDTH]
-		print '\n'*(console.HEIGHT/2-3)
+			print((line[i % len(line):] + line[:i % len(line)])[:console.WIDTH])
+		print('\n'*int(console.HEIGHT/2-3))
 		i += 1
 		time.sleep(.02)

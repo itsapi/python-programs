@@ -24,4 +24,4 @@ myDog = Dog('Name your dog: ')
 
 while myDog.isAlive:
     myDog.update()
-    myDog.feed(int(input('Feed ' + myDog.dogName)))
+    myDog.feed(int(eval(input('Feed ' + myDog.dogName))))

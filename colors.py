@@ -1,6 +1,6 @@
 import sys
 
-BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = range(8)
+BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = list(range(8))
 
 def has_colors(stream):
 	if not hasattr(stream, 'isatty'):

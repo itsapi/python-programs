@@ -14,15 +14,15 @@ class Screen(object):
 		self.display = [[' ' for pixel in range(width)] for row in range(height)]
 
 	def __str__(self):
-		output = '\n' * ((console.HEIGHT - self.height)/2)
+		output = '\n' * int((console.HEIGHT - self.height)/2)
 		newDisplay = copy.deepcopy(self.display)
 		newDisplay.reverse()
 		for row in newDisplay:
-			output += ' ' * ((console.WIDTH - self.width*2)/2)
+			output += ' ' * int((console.WIDTH - self.width*2)/2)
 			for pixel in row:
 				output += pixel + ' '
-			output += ' ' * ((console.WIDTH - self.width*2)/2) + '\n'
-		output += '\n' * ((console.HEIGHT - self.height)/2)
+			output += ' ' * int((console.WIDTH - self.width*2)/2) + '\n'
+		output += '\n' * int((console.HEIGHT - self.height)/2)
 		return output
 
 	def clear(self):
@@ -58,5 +58,5 @@ while True:
 		i += 1
 		time.sleep(.1)
 	except KeyboardInterrupt:
-		print '\n' * console.HEIGHT
+		print('\n' * console.HEIGHT)
 		sys.exit()
