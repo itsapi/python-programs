@@ -93,14 +93,14 @@ class Screen(object):
                 b += 1
             a += 1
 
-        result = '\n' * ((console.HEIGHT - self.size)/2)
+        result = '\n' * int((console.HEIGHT - self.size)/2)
         for row in reversedClock:
-            result += ' ' * ((console.WIDTH - self.size*2)/2)
+            result += ' ' * int((console.WIDTH - self.size*2)/2)
             for pixel in row:
                 result += pixel + ' '
             result += '\n'
-        result += '\n' * ((console.HEIGHT - self.size)/2)
-        result += '\n' + ' '*((console.WIDTH - 8)/2) + self.clock.digital() + '\n'
+        result += '\n' * int((console.HEIGHT - self.size)/2)
+        result += '\n' + ' '*int((console.WIDTH - 8)/2) + self.clock.digital() + '\n'
         return result
 
 class Fps(object):
