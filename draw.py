@@ -29,10 +29,10 @@ class Screen(object):
 		self.display = [[' ' for pixel in range(self.width)] for row in range(self.height)]		
 
 	def vector(self, start, angle, length, color):
-		self.display = vector.vector(self.display, start, angle, length, color)
+		self.display = vector.vector(self.display, start, angle, length, color=color)
 
 	def circle(self, start, radius, color):
-		self.display = circle.circle(self.display, start, radius, color)
+		self.display = circle.circle(self.display, start, radius, color=color)
 
 if console.WIDTH*.5 >= console.HEIGHT:
 	width, height = console.HEIGHT*1.6, console.HEIGHT*.8
