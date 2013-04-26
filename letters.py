@@ -444,6 +444,7 @@ def word(word):
 
 if __name__ == '__main__':
 	try:
+		str = sys.argv[1]
 		str = ' '.join(sys.argv[1:])
 	except:
 		str = 'Snake!'
