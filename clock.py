@@ -20,7 +20,7 @@ class Clock(object):
 		self.hours.set(self.time)
 
 	def digital(self):
-		return str(int(self.hours.digital(self.time)+1)).zfill(2) + ':' + str(int(self.minutes.digital(self.time))).zfill(2) + ':' + str(int(self.seconds.digital(self.time))).zfill(2)
+		return str(int(self.hours.digital(self.time)+1) % 12).zfill(2) + ':' + str(int(self.minutes.digital(self.time))).zfill(2) + ':' + str(int(self.seconds.digital(self.time))).zfill(2)
 
 	def analogue(self, data):
 		screen = Screen(self.size, self.size, self)
