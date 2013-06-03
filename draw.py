@@ -7,6 +7,8 @@ import copy
 import time
 import console
 
+TICK = 0.1
+
 class Screen(object):
 	def __init__(self, width, height):
 		self.width = width
@@ -56,7 +58,7 @@ while True:
 
 		sys.stdout.write(str(screen))
 		i += 1
-		time.sleep(.1)
+		time.sleep(TICK)
 	except KeyboardInterrupt:
 		print('\n' * console.HEIGHT)
 		sys.exit()
