@@ -5,6 +5,7 @@ import panic
 from PyGtalkRobot import GtalkRobot
 
 #########################################################################################
+chatBot = panic.panicBot()
 
 class SampleBot(GtalkRobot):
     
@@ -54,4 +55,3 @@ if __name__ == "__main__":
     bot = SampleBot()
     bot.setState('available', "testing gtalk bot")
     bot.start("mail.itsapi@gmail.com", "miranda96")
-    chatBot = panic.panicBot()
