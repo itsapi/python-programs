@@ -1,4 +1,4 @@
-﻿import sys
+import sys
 import time
 import panic
 
@@ -54,4 +54,4 @@ class SampleBot(GtalkRobot):
 if __name__ == "__main__":
     bot = SampleBot()
     bot.setState('available', "testing gtalk bot")
-    bot.start("mail.itsapi@gmail.com", "miranda96")
+    bot.start("mail.itsapi@gmail.com", raw_input('Password: '))
