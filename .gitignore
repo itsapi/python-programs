@@ -37,5 +37,5 @@ nosetests.xml
 __pycache__
 *.save
 
-maze_interpreter
-panic
+maze_interpreter/*
+panic/*
