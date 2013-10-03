@@ -56,7 +56,8 @@ def check_cells(x,y):
 
 #program start
 width = console.WIDTH
-height = console.HEIGHT
+height = console.HEIGHT-1
+generation = 0
 seed = read_seed()
 frame = create_frame()
 
@@ -67,7 +68,7 @@ while True:
 			out = '#' if cell else ' '
 			print(out,end='')
 		print()
-	print()
+	print('Generation: '+str(generation))
 
 	#check cells using rules
 	new_frame = deepcopy(frame)
@@ -75,5 +76,6 @@ while True:
 		for x, cell in enumerate(row):
 			check_cells(x,y)
 	frame = new_frame
-
-	time.sleep(0.1)
+	
+	generation += 1
+	time.sleep(0)
