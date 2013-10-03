@@ -65,12 +65,6 @@ directions = """\
    Destination will be on the right
 """
 
-User = {
-	'name': '',
-	'age': '',
-	'location': ''
-}
-
 Database = [
 	['your name', 'My name is PAnIC, Python Artificial Intelligence Computer.'],
 	['my name', 'I am not sure, you have not told me yet. What is your name?'],
@@ -113,81 +107,91 @@ def phrasefilter(phrase):
 def getResponse(array):
 	return random.choice(array[1:])
 
-prevResponse = ''
-print logo
+class panicBot():
+	"""create new chatbot instance"""
+	def __init__(self):
+		print logo
+		self.prevResponse = ''
+		self.user = {
+			'name': '',
+			'age': '',
+			'location': ''
+		}
 
-while 1:
-	if prevResponse in Database[3]:
-		response = phrasefilter(raw_input('> '))
-		responseType = 1
-		for word in response.split(' '):
-			if word in badFeel:
-				responseType = 0
-			elif word in goodFeel:
-				responseType = 1
-		if responseType:
-			output = random.choice(goodResponse)
-		else:
-			output = random.choice(badResponse)
-		print '\n' + output + '\n'
-		prevResponse = ''
-	elif prevResponse == (Database[0][1] + ' What is your name?') or prevResponse == Database[1][1]:
-		name = raw_input('> ')
-		User['name'] = name
-		print '\n' + random.choice(['Hello ' + name, 'Hi ' + name, 'Howdy ' + name]) + '\n'
-		prevResponse = ''
-	elif prevResponse == (Database[2][1] + ' How old are you?') or prevResponse == Database[5][1]:
-		age = raw_input('> ')
-		User['age'] = age
-		print '\n' + 'Awesome, I\'ll remember that.' + '\n'
-		prevResponse = ''
-	elif prevResponse == (Database[4][1] + ' Where do you live?'):
-		location = raw_input('> ')
-		User['location'] = location
-		print '\n' + 'I\'m sure it\'s lovely there.' + '\n'
-		prevResponse = ''
-	else:
-		var = phrasefilter(raw_input('> '))
-		vals = []
-		for i in range(len(Database)):
-			vals.append(matchword(var, Database[i][0]))
-		maxVal = [0,0]
-		for i in range(len(vals)):
-			if vals[i] > maxVal[0]:
-				maxVal[0] = vals[i]
-				maxVal[1] = i
-		if maxVal[0] > 0.55:
-			if maxVal[1] == 0:
-				if User['name'] == '':
-					prevResponse = Database[maxVal[1]][1] + ' What is your name?'
-				else:
-					prevResponse = Database[maxVal[1]][1]
-			elif maxVal[1] == 1:
-				if User['name'] == '':
-					prevResponse = Database[maxVal[1]][1]
-				else:
-					prevResponse = 'Your name is ' + User['name']
-			elif maxVal[1] == 2:
-				if User['age'] == '':
-					prevResponse = Database[maxVal[1]][1] + ' How old are you?'
-				else:
-					prevResponse = Database[maxVal[1]][1]
-			elif maxVal[1] == 4:
-				if User['name'] == '':
-					prevResponse = Database[maxVal[1]][1] + ' Where do you live?'
-				else:
-					prevResponse = Database[maxVal[1]][1]
-			elif maxVal[1] == 5:
-				if User['age'] == '':
-					prevResponse = Database[maxVal[1]][1]
-				else:
-					prevResponse = 'You are ' + User['age'] + ' years old'
-			elif maxVal[1] == 16:
-				print '\nFinding directions ...\n'
-				prevResponse = directions
-				time.sleep(2)
+	def takeInput(self, message):
+		out = ''
+		if self.prevResponse in Database[3]:
+			response = phrasefilter(message)
+			responseType = 1
+			for word in response.split(' '):
+				if word in badFeel:
+					responseType = 0
+				elif word in goodFeel:
+					responseType = 1
+			if responseType:
+				output = random.choice(goodResponse)
 			else:
-				prevResponse = getResponse(Database[maxVal[1]])
+				output = random.choice(badResponse)
+			out += '\n' + output + '\n'
+			self.prevResponse = ''
+		elif self.prevResponse == (Database[0][1] + ' What is your name?') or self.prevResponse == Database[1][1]:
+			name = message
+			self.user['name'] = name
+			print '\n' + random.choice(['Hello ' + name, 'Hi ' + name, 'Howdy ' + name]) + '\n'
+			self.prevResponse = ''
+		elif self.prevResponse == (Database[2][1] + ' How old are you?') or self.prevResponse == Database[5][1]:
+			age = message
+			self.user['age'] = age
+			out += '\n' + 'Awesome, I\'ll remember that.' + '\n'
+			self.prevResponse = ''
+		elif self.prevResponse == (Database[4][1] + ' Where do you live?'):
+			location = message
+			self.user['location'] = location
+			out += '\n' + 'I\'m sure it\'s lovely there.' + '\n'
+			self.prevResponse = ''
 		else:
-			prevResponse = random.choice(['Sorry, I don\'t understand', 'I don\'t know what you mean', 'Sorry, I don\'t get that', 'You\'ve lost me there'])
-		print '\n' + prevResponse + '\n'
+			var = phrasefilter(message)
+			vals = []
+			for i in range(len(Database)):
+				vals.append(matchword(var, Database[i][0]))
+			maxVal = [0,0]
+			for i in range(len(vals)):
+				if vals[i] > maxVal[0]:
+					maxVal[0] = vals[i]
+					maxVal[1] = i
+			if maxVal[0] > 0.55:
+				if maxVal[1] == 0:
+					if self.user['name'] == '':
+						self.prevResponse = Database[maxVal[1]][1] + ' What is your name?'
+					else:
+						self.prevResponse = Database[maxVal[1]][1]
+				elif maxVal[1] == 1:
+					if self.user['name'] == '':
+						self.prevResponse = Database[maxVal[1]][1]
+					else:
+						self.prevResponse = 'Your name is ' + self.user['name']
+				elif maxVal[1] == 2:
+					if self.user['age'] == '':
+						self.prevResponse = Database[maxVal[1]][1] + ' How old are you?'
+					else:
+						self.prevResponse = Database[maxVal[1]][1]
+				elif maxVal[1] == 4:
+					if self.user['name'] == '':
+						self.prevResponse = Database[maxVal[1]][1] + ' Where do you live?'
+					else:
+						self.prevResponse = Database[maxVal[1]][1]
+				elif maxVal[1] == 5:
+					if self.user['age'] == '':
+						self.prevResponse = Database[maxVal[1]][1]
+					else:
+						self.prevResponse = 'You are ' + self.user['age'] + ' years old'
+				elif maxVal[1] == 16:
+					out += '\nFinding directions ...\n'
+					self.prevResponse = directions
+					time.sleep(2)
+				else:
+					self.prevResponse = getResponse(Database[maxVal[1]])
+			else:
+				self.prevResponse = random.choice(['Sorry, I don\'t understand', 'I don\'t know what you mean', 'Sorry, I don\'t get that', 'You\'ve lost me there'])
+			out += '\n' + self.prevResponse + '\n'
+		return out
