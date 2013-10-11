@@ -59,7 +59,6 @@ class Puzzle(object):
         # If nothing changed, then stuck.
         return self.stuck()
 
-
 class Cell(object):
     def __init__(self, num, pos):
         self.num = int(num)
