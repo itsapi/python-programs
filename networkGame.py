@@ -1,7 +1,12 @@
-import time
+import sys
 import networking as net
 
-network = net.Net()
+try:
+    port = int(sys.argv[1])
+except:
+    port = 0
+
+network = net.Net(port)
 
 network.putData([['x',0]])
 
@@ -9,10 +14,10 @@ try:
     while True:
         data = network.getData()
         val = input(':')
-        network.putKey('x', int(val))
-        network.putKey('z', 50)
+        val = int(val) + network.getKey('x')
+        network.putKey('x', val)
 
         print(network.client.get('x'))
-        time.sleep(1)
+
 except KeyboardInterrupt:
     network.server.stop()
