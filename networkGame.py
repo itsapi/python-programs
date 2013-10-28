@@ -1,12 +1,6 @@
-import sys
 import networking as net
 
-try:
-    port = int(sys.argv[1])
-except:
-    port = 0
-
-network = net.Net(port)
+network = net.Net()
 
 network.putData([['x',0]])
 
