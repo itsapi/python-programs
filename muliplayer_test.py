@@ -32,10 +32,10 @@ def main(stdscr, network):
                 network.putKey('y', y)
             
             try:
-				py = int(network.client.get('y'))
-				px = int(network.client.get('x'))
-			except:
-				pass
+                py = int(network.client.get('y'))
+                px = int(network.client.get('x'))
+            except:
+                pass
             
             if px > maxx:
                 px = maxx
