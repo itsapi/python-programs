@@ -2,7 +2,7 @@ import networking as net
 
 network = net.Net()
 
-network.putData([['x',0]])
+network.putKey('x',0)
 
 try:
     while True:
