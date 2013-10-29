@@ -31,8 +31,11 @@ def main(stdscr, network):
             if not yold == y:
                 network.putKey('y', y)
             
-            py = int(network.client.get('y'))
-            px = int(network.client.get('x'))
+            try:
+				py = int(network.client.get('y'))
+				px = int(network.client.get('x'))
+			except:
+				pass
             
             if px > maxx:
                 px = maxx
