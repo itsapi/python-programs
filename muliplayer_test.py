@@ -56,6 +56,7 @@ def main(stdscr, network):
     else:
         network.putKey('doty', doty)
         network.putKey('dotx', dotx)
+    doty, dotx = int(doty), int(dotx)
 
     try:
         while True:
