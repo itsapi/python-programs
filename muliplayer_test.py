@@ -1,6 +1,6 @@
 import curses
 import time
-import sys
+import os
 import networking as net
 
 def main(stdscr, network):
@@ -66,9 +66,17 @@ def main(stdscr, network):
             time.sleep(0.01)
 
     except KeyboardInterrupt:
+        stop()
+
+def stop():
+    try:
         network.server.stop()
         curses.endwin()
-        sys.exit()
-
-network = net.Net()
+    except:
+        pass
+    time.sleep(0.1)
+    print('Unable to connect')
+    os._exit(1)
+	
+network = net.Net(stop)
 print(curses.wrapper(main, network))
