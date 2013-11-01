@@ -20,6 +20,7 @@ def main(stdscr, network):
             pxold, pyold = px, py
             
             c = stdscr.getch()
+            curses.flushinp()
             if c == curses.KEY_LEFT and x > 2:
                 x -= 2
             elif c == curses.KEY_RIGHT and x < maxx-2:
@@ -53,7 +54,6 @@ def main(stdscr, network):
                 stdscr.addstr(py, px, '@')
                 stdscr.addstr(y, x, '#')
                 stdscr.refresh()
-                
             time.sleep(0.01)
 
     except KeyboardInterrupt:
