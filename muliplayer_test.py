@@ -18,7 +18,7 @@ def randPos(maxy, maxx):
     y = random.randint(1, maxy-1) 
     x = (int((random.randint(1, maxx-2)-1)/2)+1)*2
     return y, x
-	
+    
 def main(stdscr, network):
     curses.curs_set(0)
     stdscr.nodelay(1)
@@ -88,8 +88,11 @@ def main(stdscr, network):
             
             # Postion the dot.
             dotyold, dotxold = doty, dotx
-            doty = int(network.client.get('doty'))
-            dotx = int(network.client.get('dotx'))
+            try:
+                doty = int(network.client.get('doty'))
+                dotx = int(network.client.get('dotx'))
+            except:
+                pass
 
             # Detect collisions with dot
             scoreold = score
