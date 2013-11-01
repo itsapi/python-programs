@@ -15,8 +15,8 @@ def stop(message=''):
     os._exit(1)
 
 def randPos(maxy, maxx):
-    y = (int((random.randint(1, maxy-1)-1)/2)+1)*2 
-    x = (int((random.randint(1, maxx-1)-1)/2)+1)*2
+    y = random.randint(1, maxy-1) 
+    x = (int((random.randint(1, maxx-2)-1)/2)+1)*2
     return y, x
 	
 def main(stdscr, network):
@@ -64,13 +64,13 @@ def main(stdscr, network):
             
             c = stdscr.getch()
             curses.flushinp()
-            if c == curses.KEY_LEFT and x > 2:
+            if c == curses.KEY_LEFT and x > 1:
                 x -= 2
             elif c == curses.KEY_RIGHT and x < maxx-2:
                 x += 2
-            elif c == curses.KEY_UP and y > 1:
+            elif c == curses.KEY_UP and y > 0:
                 y -= 1
-            elif c == curses.KEY_DOWN and y < maxy-2:
+            elif c == curses.KEY_DOWN and y < maxy-1:
                 y += 1
             
             if not xold == x:
@@ -86,11 +86,6 @@ def main(stdscr, network):
             except:
                 pass
             
-            if px > maxx-1:
-                px = maxx-1
-            if py > maxy-2:
-                py = maxy-2
-
             # Postion the dot.
             dotyold, dotxold = doty, dotx
             doty = int(network.client.get('doty'))
@@ -101,6 +96,9 @@ def main(stdscr, network):
             if doty == y and dotx == x:
                 score += 1
                 network.putKey('score', score)
+                doty, dotx = randPos(maxy, maxx)
+                network.putKey('doty', doty)
+                network.putKey('dotx', dotx)
             oscoreold = oscore
             oscore = network.client.get('score')
             
