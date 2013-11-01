@@ -31,7 +31,7 @@ def die(snake, score):
 
 def highScores(score, name):
 	try:
-		f = open('highScores3', 'rb')
+		f = open('highScores', 'rb')
 		scores = pickle.load(f)
 		if len(scores[0]) != 2:
 			scores = []
@@ -39,13 +39,13 @@ def highScores(score, name):
 	except:
 		scores = []
 	scores.append([name, score])
-	f = open('highScores3', 'wb')
+	f = open('highScores', 'wb')
 	pickle.dump(scores, f)
 	f.close()
 
 def printHighScores(n=10, newScore=(0,0)):
 	try:
-		f = open('highScores3', 'rb')
+		f = open('highScores', 'rb')
 		scores = pickle.load(f)
 		if len(scores[0]) != 2:
 			scores = False
