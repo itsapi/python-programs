@@ -68,14 +68,14 @@ def main(stdscr, network):
     except KeyboardInterrupt:
         stop()
 
-def stop():
+def stop(message=''):
     try:
         network.server.stop()
         curses.endwin()
     except:
         pass
     time.sleep(0.1)
-    print('Unable to connect')
+    if message: print(message)
     os._exit(1)
 	
 network = net.Net(stop)
