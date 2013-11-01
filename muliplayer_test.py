@@ -49,7 +49,7 @@ def main(stdscr, network):
     # Decide dot position
     doty = network.client.get('doty')
     dotx = network.client.get('dotx')
-    if doty == 'False' and dotx == 'False':
+    if doty == 'False' or dotx == 'False':
         doty, dotx = randPos(maxy, maxx)
         network.putKey('doty', doty)
         network.putKey('dotx', dotx)
