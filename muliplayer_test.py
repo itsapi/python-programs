@@ -94,13 +94,18 @@ def main(stdscr, network):
                 dotx = int(network.client.get('dotx'))
             except:
                 pass
+            
+            if doty == dotychk and dotx == dotxchk:
+                doty, dotx = dotyold, dotxold
 
             # Detect collisions with dot
+            dotychk, dotxchk = doty, dotx
             scoreold = score
             if doty == y and dotx == x:
                 score += 1
                 network.putKey('score', score)
-                doty, dotx = randPos(maxy, maxx)
+                while doty == dotychk and dotx == dotxchk:
+                    doty, dotx = randPos(maxy, maxx)
                 network.putKey('doty', doty)
                 network.putKey('dotx', dotx)
             oscoreold = oscore
