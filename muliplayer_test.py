@@ -97,7 +97,7 @@ def main(stdscr, network):
             dotx = int(network.client.get('dotx'))
 
             # Detect collisions with dot
-            oldscore = score
+            scoreold = score
             if doty == y and dotx == x:
                 score += 1
                 network.putKey('score', score)
