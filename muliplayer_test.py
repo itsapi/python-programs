@@ -57,7 +57,6 @@ def main(stdscr, network):
         network.putKey('doty', doty)
         network.putKey('dotx', dotx)
     doty, dotx = int(doty), int(dotx)
-    dotychk, dotxchk = doty, dotx
 
     try:
         while True:
@@ -95,9 +94,6 @@ def main(stdscr, network):
                 dotx = int(network.client.get('dotx'))
             except:
                 pass
-            
-            if doty == dotychk and dotx == dotxchk:
-                doty, dotx = dotyold, dotxold
 
             # Detect collisions with dot
             dotychk, dotxchk = doty, dotx
