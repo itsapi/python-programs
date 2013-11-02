@@ -5,6 +5,7 @@ import random
 import networking as net
 
 def stop(message=''):
+    # Cleanly exit program
     try:
         network.server.stop()
         curses.endwin()
@@ -23,13 +24,13 @@ def main(stdscr, network):
     curses.curs_set(0)
     stdscr.nodelay(1)
 
-    # Reset file.
+    # Reset file
     network.putData([])
     score = 0
     network.putKey('score', score)
     oscore = 0
 
-    # Get players and their positions set up.
+    # Get players and their positions set up
     maxy, maxx = stdscr.getmaxyx()
     network.putKey('maxy', maxy)
     network.putKey('maxx', maxx)
@@ -60,7 +61,7 @@ def main(stdscr, network):
 
     try:
         while True:
-            # Position our player.
+            # Position our player
             xold, yold = x, y
             
             c = stdscr.getch()
@@ -79,7 +80,7 @@ def main(stdscr, network):
             if not yold == y:
                 network.putKey('y', y)
             
-            # Position other player.
+            # Position other player
             pxold, pyold = px, py
             try:
                 py = int(network.client.get('y'))
@@ -87,17 +88,13 @@ def main(stdscr, network):
             except:
                 pass
             
-            # Postion the dot.
+            # Postion the dot
             dotyold, dotxold = doty, dotx
             try:
                 doty = int(network.client.get('doty'))
                 dotx = int(network.client.get('dotx'))
             except:
                 pass
-                
-            if not (dotyold == doty and dotxold == dotx):
-                network.putKey('doty', doty)
-                network.putKey('dotx', dotx)
 
             # Detect collisions with dot
             dotychk, dotxchk = doty, dotx
@@ -107,12 +104,15 @@ def main(stdscr, network):
                 network.putKey('score', score)
                 while doty == dotychk and dotx == dotxchk:
                     doty, dotx = randPos(maxy, maxx)
-                network.putKey('doty', doty)
-                network.putKey('dotx', dotx)
             oscoreold = oscore
             oscore = network.client.get('score')
+
+            # Update local dot position
+            if not (dotyold == doty and dotxold == dotx):
+                network.putKey('doty', doty)
+                network.putKey('dotx', dotx)                
             
-            # Write to screen.
+            # Write to screen
             if not (pyold == py and
                     pxold == px and
                     yold == y and
