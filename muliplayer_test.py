@@ -94,6 +94,10 @@ def main(stdscr, network):
                 dotx = int(network.client.get('dotx'))
             except:
                 pass
+                
+            if not (dotyold == doty and dotxold == dotx):
+                network.putKey('doty', doty)
+                network.putKey('dotx', dotx)
 
             # Detect collisions with dot
             dotychk, dotxchk = doty, dotx
