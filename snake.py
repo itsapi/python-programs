@@ -88,7 +88,8 @@ def menuScreen():
 
 def menu(stdscr):
 	curses.start_color()
-	curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_BLACK)
+	curses.use_default_colors()
+	curses.init_pair(1, curses.COLOR_GREEN, -1)
 	curses.curs_set(0)
 	stdscr.nodelay(0)
 	n = curses.A_NORMAL
@@ -156,9 +157,10 @@ def main(stdscr, score, snake):
 	curses.curs_set(0)
 
 	curses.start_color()
-	curses.init_pair(1, curses.COLOR_RED, curses.COLOR_BLACK)
-	curses.init_pair(2, curses.COLOR_GREEN, curses.COLOR_BLACK)
-	curses.init_pair(3, curses.COLOR_BLACK, curses.COLOR_WHITE)
+	curses.use_default_colors()
+	curses.init_pair(1, curses.COLOR_RED, -1)
+	curses.init_pair(2, curses.COLOR_GREEN, -1)
+	curses.init_pair(3, curses.COLOR_BLACK, -1)
 
 	grow = False
 	food = Food(stdscr, snake, score)
