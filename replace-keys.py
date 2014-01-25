@@ -13,6 +13,7 @@ def find(path, fileOp, arg):
         elif isdir(f):
             find(f, fileOp, arg)
 
+
 def instData(filename, data):
     try:
         with open(filename, 'r') as f:
@@ -22,10 +23,11 @@ def instData(filename, data):
         return
 
     for key, value in data.items():
-        fileStr = fileStr.replace('{'+key+'}', value)
+        fileStr = fileStr.replace('{' + key + '}', value)
 
     with open(filename, 'w') as f:
         f.write(fileStr)
+
 
 def main():
     try:
@@ -40,10 +42,10 @@ def main():
         data = loads(dataStr)
 
     except:
-       print("Error in processing JSON file: ", sys.exc_info()[0])
-       raise
+        print("Error in processing JSON file: ", sys.exc_info()[0])
+        raise
 
-    find( files, instData, data )
+    find(files, instData, data)
 
     print('All keys in {} replaced.'.format(files))
 
