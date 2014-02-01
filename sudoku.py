@@ -2,13 +2,15 @@ import sys
 import time
 import copy
 
+
 class Puzzle(object):
+
     def __init__(self, puzzle):
         #                    Number,    (y pos, xpos)
-        puzzle = [Cell(puzzle[i], (int(i/9), i%9)) for i in range(81)]
+        puzzle = [Cell(puzzle[i], (int(i / 9), i % 9)) for i in range(81)]
         # Split puzzle into rows.
-        self.puzzle = [puzzle[:9], puzzle[9:18], puzzle[18:27], 
-                       puzzle[27:36], puzzle[36:45], puzzle[45:54], 
+        self.puzzle = [puzzle[:9], puzzle[9:18], puzzle[18:27],
+                       puzzle[27:36], puzzle[36:45], puzzle[45:54],
                        puzzle[54:63], puzzle[63:72], puzzle[72:81]]
 
         self.lastframe = None
@@ -17,13 +19,13 @@ class Puzzle(object):
         out = '\n'
         for y, row in enumerate(self.puzzle):
             for x, cell in enumerate(row):
-                if x%3 == 0:
+                if x % 3 == 0:
                     out += '| '
                 out += str(cell) + ' '
-            if (y+1)%3 == 0:
-                out += '\n' + ('-'*24)
+            if (y + 1) % 3 == 0:
+                out += '\n' + ('-' * 24)
             out += '\n'
-        return out[:-1] # To get rid of final linebreak
+        return out[:-1]  # To get rid of final linebreak
 
     @property
     def solved(self):
@@ -36,7 +38,7 @@ class Puzzle(object):
         return solved
 
     def stuck(self):
-        """ 
+        """
             Returns True if the lastframe is the same as the current puzzle.
         """
         same = True
@@ -48,9 +50,9 @@ class Puzzle(object):
 
     def frame(self):
         """ Does a pass on the puzzle removing conflicts for each cell """
-        
+
         self.lastframe = copy.deepcopy(self.puzzle)
-        
+
         for y, row in enumerate(self.puzzle):
             for x, cell in enumerate(row):
                 if not cell.solved:
@@ -59,7 +61,9 @@ class Puzzle(object):
         # If nothing changed, then stuck.
         return self.stuck()
 
+
 class Cell(object):
+
     def __init__(self, num, pos):
         self.num = int(num)
         if self.num == 0:
@@ -116,17 +120,17 @@ class Cell(object):
                         self.candidates.remove(candidate)
 
         # Get coords of top left cell in box of our cell.
-        boxY = int(self.pos[0]/3)*3
-        boxX = int(self.pos[1]/3)*3
+        boxY = int(self.pos[0] / 3) * 3
+        boxX = int(self.pos[1] / 3) * 3
         # Check all solved cells in our box for conflicts.
         for y in range(3):
             for x in range(3):
-                cell = puzzle[y+boxY][x+boxX]
+                cell = puzzle[y + boxY][x + boxX]
                 if cell.solved:
                     # Check all of our candidates against the cell.
                     for candidate in self.candidates:
                         if cell.val == candidate:
-                            # If cell conflicts with one of our candidates, 
+                            # If cell conflicts with one of our candidates,
                             #   remove candidate.
                             self.candidates.remove(candidate)
 
@@ -135,13 +139,13 @@ class Cell(object):
         if self.solved:
             self.num = self.candidates[0]
 
-        # If only cell in row or column or box with a particular candidate, 
+        # If only cell in row or column or box with a particular candidate,
         #   set us solved.
         # Hidden Candidate
 
         # Check row, column, box for other cells with our candidates.
         for candidate in self.candidates:
-            # 'only' gets set to false if any other cells in row, column, 
+            # 'only' gets set to false if any other cells in row, column,
             #   box contain this candidate.
 
             only = True
@@ -166,12 +170,12 @@ class Cell(object):
                 self.num = self.candidates[0]
 
             only = True
-            boxY = int(self.pos[0]/3)*3
-            boxX = int(self.pos[1]/3)*3
+            boxY = int(self.pos[0] / 3) * 3
+            boxX = int(self.pos[1] / 3) * 3
             # Check box for other cells with candidate.
             for y in range(3):
                 for x in range(3):
-                    cell = puzzle[y+boxY][x+boxX]
+                    cell = puzzle[y + boxY][x + boxX]
                     # If it has our candidate and it isn't us, not solved
                     if candidate in cell.cands and not cell.pos == self.pos:
                         only = False
@@ -188,7 +192,7 @@ def main():
         elif sys.argv[1] == '-s':
             step = True
             time_ = False
-    except: # If arg doesn't exist, don't step, or time.
+    except:  # If arg doesn't exist, don't step, or time.
         step = False
         time_ = False
 
@@ -212,8 +216,11 @@ def main():
     # puzzle = '007600500000300700450000080000000020605803000009000051000009000020005100300200600' # s
     # puzzle = '000001000200000409000307108083000007000092000000038040408000920070000500001804000' # s
     # puzzle = '000021600003078500904000070008300000400009000100004208000000004640010020000005083' # s
-    # puzzle = '000080010070000000930000000060900300001050040000000000002700000000003000004000051' # 17 L2 n
-    puzzle = '000150320000000050408009000000008004000000000023000000800005000000000000037200010' # 18 L1 s
+    # puzzle =
+    # '000080010070000000930000000060900300001050040000000000002700000000003000004000051'
+    # 17 L2 n
+    # 18 L1 s
+    puzzle = '000150320000000050408009000000008004000000000023000000800005000000000000037200010'
     # http://kjell.haxx.se/sudoku/
 
     puzzle = Puzzle(puzzle)
