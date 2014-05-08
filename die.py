@@ -3,43 +3,19 @@
 import random, time
 
 
-numbers = {
-    '0': [
-        '   ',
-        '   ',
-        '   '
-    ],
-    '1': [
-        '   ',
-        ' # ',
-        '   '
-    ],
-    '2': [
-        '#  ',
-        '   ',
-        '  #'
-    ],
-    '3': [
-        '#  ',
-        ' # ',
-        '  #'
-    ],
-    '4': [
-        '# #',
-        '   ',
-        '# #'
-    ],
-    '5': [
-        '# #',
-        ' # ',
-        '# #'
-    ],
-    '6': [
-        '# #',
-        '# #',
-        '# #'
-    ],
+dots = {
+    '1': '23456',
+    '2': '',
+    '3': '456',
+    '4': '6',
+    '5': '135',
+    '6': '6',
+    '7': '456',
+    '8': '',
+    '9': '23456'
 }
+
+i = 0
 
 class Die:
     def __init__(self, char='#'):
@@ -47,17 +23,18 @@ class Die:
         self.char = char
 
     def __str__(self):
-        face = numbers[str(self.number)]
         out = '╭' + ('─' * 7) + '╮\n'
 
-        for row in face:
+        i = 0
+        for row in range(3):
             out += '│ '
-            for char in row:
-                out += (self.char if char == '#' else ' ') + ' '
+            for col in range(3):
+                i += 1
+                out += (self.char if str(self.number) in dots[str(i)] else ' ') + ' '
             out += '│\n'
-                
+
         out += '╰' + ('─' * 7) + '╯\n'
-        
+
         return out
 
     def roll(self):
@@ -69,4 +46,5 @@ die = Die('●')
 while True:
     print(die)
     die.roll()
+    input()
     time.sleep(0.1)
