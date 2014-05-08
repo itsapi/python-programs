@@ -4,15 +4,13 @@ import random, time
 
 
 dots = {
-    '1': '23456',
-    '2': '',
-    '3': '456',
-    '4': '6',
-    '5': '135',
-    '6': '6',
-    '7': '456',
-    '8': '',
-    '9': '23456'
+    '0': '',
+    '1': '5',
+    '2': '19',
+    '3': '159',
+    '4': '1379',
+    '5': '13579',
+    '6': '134679'
 }
 
 i = 0
@@ -30,7 +28,7 @@ class Die:
             out += '│ '
             for col in range(3):
                 i += 1
-                out += (self.char if str(self.number) in dots[str(i)] else ' ') + ' '
+                out += (self.char if str(i) in dots[str(self.number)] else ' ') + ' '
             out += '│\n'
 
         out += '╰' + ('─' * 7) + '╯\n'
